@@ -1,0 +1,37 @@
+{
+    "6": {
+        "id": 1,
+        "WorkoutNumber": 1,
+        "Name": "Lena_Kuka",
+        "Date": "4.10.2022",
+        "Time": "10:00"
+    },
+    "7": {
+        "id": 2,
+        "WorkoutNumber": 2,
+        "Name": "Silvestr_Stalone",
+        "Date": "5.10.2022",
+        "Time": "11:00"
+    },
+    "8": {
+        "id": 3,
+        "WorkoutNumber": 3,
+        "Name": "Jackie_Chan",
+        "Date": "5.10.2022",
+        "Time": "12:00"
+    },
+    "9": {
+        "id": 4,
+        "WorkoutNumber": 7,
+        "Name": "Jonh_Wick",
+        "Date": "5.10.2022",
+        "Time": "13:00"
+    },
+    "10": {
+        "id": 5,
+        "WorkoutNumber": 9,
+        "Name": "Jared_Leto",
+        "Date": "6.10.2022",
+        "Time": "15:00"
+    }
+}
