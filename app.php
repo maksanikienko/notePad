@@ -1,5 +1,5 @@
 <?php
-namespace Manikienko\Todo;
+
 require __DIR__."/vendor/autoload.php";
 require __DIR__."/src/notepad.php";
 
@@ -10,7 +10,7 @@ use Manikienko\Todo\Storage;
 $app = new Application(
     new Storage(
         new Filesystem(),
-        __DIR__ . '/storage/data.json'
+        __DIR__ . 'src/data.json'
     )
 );
 

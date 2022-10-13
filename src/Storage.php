@@ -15,9 +15,6 @@ class Storage {
         $this->storagePath = $storagePath;
     }
 
-    /**
-     * @return Item[] 
-     **/
     public function getItems()
     {
         // file_exist, file_get_contents, file_put_contents
@@ -30,7 +27,7 @@ class Storage {
         $items = json_decode($this->fs->get($this->storagePath), true);
 
         // array[] -> Item[]
-        $items = array_map(function(array $item) {
+        $items = array_map(function(Workout $item) {
             return new Workout(
                 $item['id'],
                 $item['date'],

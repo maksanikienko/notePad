@@ -4,6 +4,7 @@ namespace Manikienko\Todo;
 
 class Filesystem
 {
+
     public function exists($path): bool
     {
         return file_exists($path);
@@ -20,4 +21,6 @@ class Filesystem
     }
 }
 
-$path = new Filesystem("data.json");
+$path = new Filesystem("/home/max/notePad/src/data.json");
+///home/max/notePad/src/data.json
+//src/data.json
