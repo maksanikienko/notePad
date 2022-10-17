@@ -21,10 +21,8 @@ $dishFunc = function($dishArray){
 $animalsFirstLetter = array_map($animalFunc,$animalsArrays);
 $dishFirstLetter = array_map($dishFunc,$dishArrays);
 
-$inArray=function($dishArrays){
-    if(in_array("sushi",$dishArrays)){
-    return "true";
-}
+$result = function(){
+
 };
     
-print_r($inArray);
+print_r();

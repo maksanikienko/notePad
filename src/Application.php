@@ -12,11 +12,11 @@ class Application
     ) {
     }
 
-    function addItem($id,$date,$time,$name,$fullName,$age)
+    function addItem($id,$date,$time,$name,$fullName,$age,$status)
     {
         $items = $this->storage->getItems();
 
-        $newItem = new Workout($id,$date, $time,$name,$fullName,$age);
+        $newItem = new Workout($id,$date, $time,$name,$fullName,$age,$status);
         $items[] = $newItem;
 
         $this->storage->saveItems($items);
@@ -24,9 +24,7 @@ class Application
         print "New items with ID '{$newItem->getId() }' was added." . PHP_EOL;
     }
 
-
-    // для редактирования нам нужно знать какую запись мы ищем ($id) и что мы хотим в ней поменять ($content)
-    function updateItem($id,$date,$time,$name,$fullName,$age)
+    function updateItem($id,$date,$time,$name,$fullName,$age,$status)
     {
         $items = $this->storage->getItems();
         foreach ($items as $item) {
@@ -36,6 +34,7 @@ class Application
                 $item->setContent($name);
                 $item->setContent($fullName);
                 $item->setContent($age);
+                $item->setStatus($status);
                 print "Item with ID '$id' was updated." . PHP_EOL;
             }
         }
@@ -43,16 +42,13 @@ class Application
         $this->storage->saveItems($items);
     }
 
-    //status
     function setItemStatus(string $id, string $newStatus)
     {
-        /** @var Items[] $items */
         $items = $this->storage->getItems();
 
         foreach ($items as $item) {
-            /** @var Items $item */
             if ($item->getId() === $id) {
-                $item->setStatus($newStatus); /* @note place where exception can be thown */
+                $item->setStatus($newStatus);
                 print "Item with ID '$id' was updated." . PHP_EOL;
             }
         }
@@ -60,14 +56,11 @@ class Application
         $this->storage->saveItems($items);
     }
 
-    // удаление происходит по идентификатору ($id) записи
     function deleteItem(string $id)
     {
-        /** @var Items[] $items */
         $items = $this->storage->getItems();
 
         foreach ($items as $key => $item) {
-            /** @var Items $item */
             if ($item->getId() === $id) {
                 unset($items[$key]);
                 print "Item with ID '$id' was deleted." . PHP_EOL;
@@ -79,7 +72,6 @@ class Application
 
     function readItems()
     {
-        /** @var Items[] $records */
         $records = $this->storage->getItems();
 
         if (empty($records)) {
@@ -87,11 +79,9 @@ class Application
         }
 
         foreach ($records as $record) {
-            /** @var Items $record */
-            // date(<format:string>, <timestamp:int>) - это функция только форматирует даты которые передаются вторым аргументом,
-            // но если ничего не передать, то это будет текущая дата
-            $formattedDate = $record->getCreatedAt()->format('Y/m/d');
-            print "[{$record->getId()}] <{$record->getStatus()}> {$record->getContent()} ($formattedDate)" . PHP_EOL;
+            //$formattedDate = 
+            $record->getCreatedAt()->format('Y/m/d');
+            //print "[{$record->getId()}] <{$record->getStatus()}> ($formattedDate)" . PHP_EOL;
         }
     }
 
@@ -111,11 +101,10 @@ class Application
 
     public function run()
     {
-        // @fixme extract readline() to a separate function 
         while ($command = readline("todo>")) {
             try {
                 $this->executeCommand($command);
-            } catch (Exception $e) { // @fixme replacewith Throwable when interfaces are available
+            } catch (Exception $e) { 
                 print "Error: {$e->getMessage()}".PHP_EOL;
             }
         }
@@ -124,13 +113,13 @@ class Application
     public function executeCommand(string $command)
     {
         match ($command) {
-            "add" => $this->addItem(readline("id>"),readline("date>"),readline("time>"),readline("name>"),readline("fullName>"),readline("age>")),
-            "update" => $this->updateItem(readline("id>"),readline("date>"), readline("time>"),readline("name>"),readline("fullName>"),readline("age>")),
+            "add" => $this->addItem(readline("id>"),readline("date>"),readline("time>"),readline("name>"),readline("fullName>"),readline("age>"),readline("status>")),
+            "update" => $this->updateItem(readline("id>"),readline("date>"), readline("time>"),readline("name>"),readline("fullName>"),readline("age>"),readline("status>")),
             "read" => $this->readItems(),
             "delete" => $this->deleteItem(readline("id>")),
             "set-status" => $this->setItemStatus(readline("id>"), readline("status>")),
-            "help" => print $this->getHelp(), // @fixme replace print with a IO class function call
-            "exit" => die("See you later" . PHP_EOL), // @fixme replace with terminate function call
+            "help" => print $this->getHelp(),
+            "exit" => die("See you later" . PHP_EOL),
 
             default => print "Command '$command' is not available. " .
                 "Use 'php " . basename(__FILE__) . " help' command for more details" . PHP_EOL,

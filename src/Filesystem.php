@@ -22,5 +22,3 @@ class Filesystem
 }
 
 $path = new Filesystem("/home/max/notePad/src/data.json");
-///home/max/notePad/src/data.json
-//src/data.json

@@ -11,6 +11,7 @@ class Storage {
 
     public function __construct(Filesystem $fs, string $storagePath)
     {
+
         $this->fs = $fs;
         $this->storagePath = $storagePath;
     }
@@ -27,7 +28,7 @@ class Storage {
         $items = json_decode($this->fs->get($this->storagePath), true);
 
         // array[] -> Item[]
-        $items = array_map(function(Workout $item) {
+        $items = array_map(function(array $item) {
             return new Workout(
                 $item['id'],
                 $item['date'],

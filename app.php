@@ -10,7 +10,7 @@ use Manikienko\Todo\Storage;
 $app = new Application(
     new Storage(
         new Filesystem(),
-        __DIR__ . 'src/data.json'
+        __DIR__ . '/src/data.json'
     )
 );
 
