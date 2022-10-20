@@ -3,7 +3,7 @@
 namespace Manikienko\Todo;
 
 use Exception;
-use Manikienko\Todo\Workout;
+use Manikienko\Todo\DTO\Workout;
 
 class Application  
 {

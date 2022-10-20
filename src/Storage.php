@@ -2,7 +2,7 @@
 
 namespace Manikienko\Todo;
 
-use Manikienko\Todo\Workout;
+use Manikienko\Todo\DTO\Workout;
 
 class Storage {
 

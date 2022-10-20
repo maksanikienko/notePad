@@ -1,5 +1,5 @@
 <?php
-namespace Manikienko\Todo; // autoload by psr-4
+namespace Manikienko\Todo\DTO; // autoload by psr-4
 
 use DateTimeImmutable;
 use DateTimeInterface;

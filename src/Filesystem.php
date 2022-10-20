@@ -21,4 +21,3 @@ class Filesystem
     }
 }
 
-$path = new Filesystem("/home/max/notePad/src/data.json");
